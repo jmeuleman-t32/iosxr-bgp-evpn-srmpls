@@ -4,10 +4,6 @@ username devops
  group root-lr
  secret cisco!
 !
-grpc
- vrf OOBM
- port 57400
- no-tls
 !
 vrf OOBM
  address-family ipv4 unicast
@@ -16,7 +12,7 @@ vrf OOBM
 netconf-yang agent
  ssh
 !
-interface MgmtEth0/RP0/CPU0/0
+interface MgmtEth0/0/CPU0/0
  description OOBM Management
  vrf OOBM
  ipv4 address 100.71.72.3 255.255.255.0

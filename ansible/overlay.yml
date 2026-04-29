@@ -1,0 +1,12 @@
+---
+# main playbook
+- hosts: ic-edge
+  gather_facts: false
+  roles:
+    - role: overlay
+- hosts: all
+  gather_facts: false
+  tasks:
+    - name: Save Running-Config to Startup-Config
+      cisco.nxos.nxos_config:
+        save_when: always
