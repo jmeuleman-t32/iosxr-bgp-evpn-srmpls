@@ -1,18 +1,16 @@
 {
-  "name": "Ansible Dev Container",
+  "name": "terraform-iosxr-lab",
   "build": {
-    "dockerfile": "Dockerfile",
-    "context": ".."
+    "dockerfile": "Dockerfile"
   },
   "customizations": {
     "vscode": {
       "extensions": [
-        "redhat.ansible",
-        "redhat.vscode-yaml",
-        "ms-python.python"
+        "hashicorp.terraform",
+        "ms-python.python",
+        "redhat.vscode-yaml"
       ]
     }
   },
-  "remoteUser": "vscode",
-  "postCreateCommand": "ansible --version && ansible-lint --version"
+  "postCreateCommand": "terraform version"
 }
