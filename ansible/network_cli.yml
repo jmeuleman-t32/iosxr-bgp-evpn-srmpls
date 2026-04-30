@@ -3,7 +3,7 @@
 - hosts: ic-edge
   gather_facts: false
   roles:
-    - role: overlay
+    - role: network_cli
 - hosts: all
   gather_facts: false
   tasks:

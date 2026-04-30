@@ -1,0 +1,4 @@
+# Use OpenConfig/YANG based on NETCONF (port 830) for devices in this group
+ansible_connection: ansible.netcommon.netconf
+ansible_network_os: cisco.iosxr.iosxr
+ansible_port: 830

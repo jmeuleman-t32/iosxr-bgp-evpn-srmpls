@@ -1,9 +1,9 @@
 ---
 # main playbook
-- hosts: ic-core, ic-edge
+- hosts: ic-core
   gather_facts: false
   roles:
-    - role: underlay
+    - role: netconf_yang
 - hosts: all
   gather_facts: false
   tasks:

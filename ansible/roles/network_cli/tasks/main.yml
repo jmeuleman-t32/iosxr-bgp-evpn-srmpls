@@ -1,0 +1,4 @@
+---
+# tasks file for roles/underlay
+- name: Configure interfaces and IP addresses for IOS-XR
+  import_tasks: interfaces.yml

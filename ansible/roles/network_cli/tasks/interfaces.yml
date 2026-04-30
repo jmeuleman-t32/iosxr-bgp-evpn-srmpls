@@ -1,0 +1,5 @@
+---
+- name: Set hostname
+  cisco.iosxr.iosxr_config:
+    lines:
+      - "hostname {{ hostname }}"
