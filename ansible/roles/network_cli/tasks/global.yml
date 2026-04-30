@@ -1,5 +1,5 @@
 ---
-- name: Set hostname
+- name: configure hostname for IOS-XR devices
   cisco.iosxr.iosxr_config:
     lines:
       - "hostname {{ hostname }}"
