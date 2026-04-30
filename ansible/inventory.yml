@@ -1,11 +1,11 @@
 ---
 all:
   children:
-    ic-core:
+    ic_core:
       hosts:
         100.71.72.1:
         100.71.72.2:
-    ic-edge:
+    ic_edge:
       hosts:
         100.71.72.3:
         100.71.72.4:
