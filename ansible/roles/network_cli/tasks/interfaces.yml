@@ -1,0 +1,8 @@
+- name: Configure IPv4 addresses on underlay interfaces
+  cisco.iosxr.iosxr_l3_interfaces:
+    config:
+      - name: "{{ item.name }}"
+        ipv4:
+          - address: "{{ item.address }}"
+    state: merged
+  loop: "{{ underlay_interfaces }}"
