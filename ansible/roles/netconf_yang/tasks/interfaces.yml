@@ -1,0 +1,40 @@
+---
+- name: Configure IPv4 addresses on underlay interfaces
+  ansible.netcommon.netconf_config:
+    target: candidate
+    content: |
+      <config>
+        <interfaces xmlns="http://openconfig.net/yang/interfaces">
+        {% for intf in underlay_interfaces %}
+          <interface>
+            <name>{{ intf.name }}</name>
+            <config>
+              <name>{{ intf.name }}</name>
+              <type xmlns:ianaift="urn:ietf:params:xml:ns:yang:iana-if-type">ianaift:ethernetCsmacd</type>
+              <enabled>true</enabled>
+            </config>
+            <subinterfaces>
+              <subinterface>
+                <index>0</index>
+                <config>
+                  <index>0</index>
+                  <enabled>true</enabled>
+                </config>
+                <ipv4 xmlns="http://openconfig.net/yang/interfaces/ip">
+                  <addresses>
+                    <address>
+                      <ip>{{ intf.address.split('/')[0] }}</ip>
+                      <config>
+                        <ip>{{ intf.address.split('/')[0] }}</ip>
+                        <prefix-length>{{ intf.address.split('/')[1] }}</prefix-length>
+                      </config>
+                    </address>
+                  </addresses>
+                </ipv4>
+              </subinterface>
+            </subinterfaces>
+          </interface>
+        {% endfor %}
+        </interfaces>
+      </config>
+    commit: true

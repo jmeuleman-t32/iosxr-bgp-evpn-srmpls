@@ -25,5 +25,7 @@ router static
    0.0.0.0/0 100.71.72.254
   !
 !
+ssh server v2
 ssh server vrf OOBM
+ssh server netconf vrf OOBM
 end

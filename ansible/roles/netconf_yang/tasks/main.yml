@@ -1,2 +1,7 @@
 ---
-# tasks file for roles/overlay
+# tasks file for roles/netconf_yang
+- name: Configure global settings for IOS-XR
+  import_tasks: global.yml
+
+- name: Configure IPv4 addresses on underlay interfaces
+  import_tasks: interfaces.yml
