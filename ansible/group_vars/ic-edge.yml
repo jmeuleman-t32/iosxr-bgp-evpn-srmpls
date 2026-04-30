@@ -1,3 +1,8 @@
 # Use IOS-XR vendor based ansible modules (SSH port 22) for devices in this group
 ansible_connection: ansible.netcommon.network_cli
 ansible_network_os: cisco.iosxr.iosxr
+ansible_port: 22
+ansible_ssh_type: paramiko
+ansible_ssh_common_args: >-
+  -o HostKeyAlgorithms=+ssh-rsa
+  -o PubkeyAcceptedAlgorithms=+ssh-rsa
