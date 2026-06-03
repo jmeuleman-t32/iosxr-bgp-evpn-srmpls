@@ -4,37 +4,20 @@
     target: candidate
     content: |
       <config>
-        <interfaces xmlns="http://openconfig.net/yang/interfaces">
-        {% for intf in underlay_interfaces %}
-          <interface>
-            <name>{{ intf.name }}</name>
-            <config>
-              <name>{{ intf.name }}</name>
-              <type xmlns:ianaift="urn:ietf:params:xml:ns:yang:iana-if-type">ianaift:ethernetCsmacd</type>
-              <enabled>true</enabled>
-            </config>
-            <subinterfaces>
-              <subinterface>
-                <index>0</index>
-                <config>
-                  <index>0</index>
-                  <enabled>true</enabled>
-                </config>
-                <ipv4 xmlns="http://openconfig.net/yang/interfaces/ip">
-                  <addresses>
-                    <address>
-                      <ip>{{ intf.address.split('/')[0] }}</ip>
-                      <config>
-                        <ip>{{ intf.address.split('/')[0] }}</ip>
-                        <prefix-length>{{ intf.address.split('/')[1] }}</prefix-length>
-                      </config>
-                    </address>
-                  </addresses>
-                </ipv4>
-              </subinterface>
-            </subinterfaces>
-          </interface>
-        {% endfor %}
-        </interfaces>
+        <interface-configurations xmlns="http://cisco.com/ns/yang/Cisco-IOS-XR-ifmgr-cfg">
+          <interface-configuration>
+            <active>act</active>
+            <interface-name>{{ item.name }}</interface-name>
+            <ipv4-network xmlns="http://cisco.com/ns/yang/Cisco-IOS-XR-ipv4-io-cfg">
+              <addresses>
+                <primary>
+                  <address>{{ item.address.split('/')[0] }}</address>
+                  <netmask>255.255.255.254</netmask>
+                </primary>
+              </addresses>
+            </ipv4-network>
+          </interface-configuration>
+        </interface-configurations>
       </config>
     commit: true
+  loop: "{{ underlay_interfaces }}"
