@@ -1,6 +1,0 @@
-iosxr:
-  device_groups:
-    - name: ic-leafs
-      devices:
-        - ic-node-3
-        - ic-node-4
