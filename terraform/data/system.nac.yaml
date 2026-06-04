@@ -1,6 +1,0 @@
-iosxr:
-  devices:
-    - name: router-1
-      host: 100.71.72.1
-      configuration:
-        hostname: ic-node-1

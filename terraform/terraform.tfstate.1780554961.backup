@@ -1,0 +1,43 @@
+{
+  "version": 4,
+  "terraform_version": "1.15.5",
+  "serial": 9,
+  "lineage": "1cbfbbf0-7ee7-72e4-5e1e-c109b4ac1900",
+  "outputs": {},
+  "resources": [
+    {
+      "module": "module.iosxr",
+      "mode": "managed",
+      "type": "iosxr_hostname",
+      "name": "hostname",
+      "provider": "module.iosxr.provider[\"registry.terraform.io/ciscodevnet/iosxr\"]",
+      "instances": [
+        {
+          "index_key": "router-1",
+          "schema_version": 0,
+          "attributes": {
+            "device": "router-1",
+            "id": "Cisco-IOS-XR-um-hostname-cfg:/hostname",
+            "system_network_name": "ic-node-1"
+          },
+          "sensitive_attributes": [],
+          "identity_schema_version": 0,
+          "private": "eyJpbXBvcnRpbmciOiJNQT09In0="
+        }
+      ]
+    }
+  ],
+  "check_results": [
+    {
+      "object_kind": "var",
+      "config_addr": "module.iosxr.module.model.var.model",
+      "status": "pass",
+      "objects": [
+        {
+          "object_addr": "module.iosxr.module.model.var.model",
+          "status": "pass"
+        }
+      ]
+    }
+  ]
+}

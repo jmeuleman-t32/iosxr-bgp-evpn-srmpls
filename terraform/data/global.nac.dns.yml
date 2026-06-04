@@ -1,0 +1,9 @@
+iosxr:
+  global:
+    configuration:
+      domain:
+        name: "${domain_name}"
+        lookup_disable: false
+        name_servers:
+          - address: "${dns_server_primary}"
+            order: 1

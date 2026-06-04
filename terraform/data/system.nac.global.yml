@@ -1,0 +1,8 @@
+iosxr:
+  global:
+    variables:
+    # Infrastructure parameters
+      bgp_asn: 65000
+      domain_name: "cml.transit32.local"
+      ntp_server_primary: "100.71.72.254"
+      dns_server_primary: "100.71.72.254"

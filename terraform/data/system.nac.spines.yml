@@ -1,0 +1,6 @@
+iosxr:
+  device_groups:
+    - name: ic-spines
+      devices:
+        - ic-node-1
+        - ic-node-2
