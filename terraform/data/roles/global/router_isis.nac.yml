@@ -13,14 +13,21 @@ iosxr:
               # router isis interfaces
               interfaces:
                 - name: GigabitEthernet0/0/0/0
+                  hello_padding: disable
                   passive: false
-                  point_to_point: false
+                  point_to_point: true
                   address_family:
                     - name: ipv4
                       type: unicast
                 - name: GigabitEthernet0/0/0/1
+                  hello_padding: disable
                   passive: false
-                  point_to_point: false
+                  point_to_point: true
+                  address_family:
+                    - name: ipv4
+                      type: unicast
+                - name: Loopback0
+                  passive: true
                   address_family:
                     - name: ipv4
                       type: unicast
@@ -37,17 +44,24 @@ iosxr:
               # router isis interfaces
               interfaces:
                 - name: GigabitEthernet0/0/0/0
+                  hello_padding: disable
                   passive: false
-                  point_to_point: false
+                  point_to_point: true
                   address_family:
                       - name: ipv4
                         type: unicast
                 - name: GigabitEthernet0/0/0/1
+                  hello_padding: disable
                   passive: false
-                  point_to_point: false
+                  point_to_point: true
                   address_family:
                       - name: ipv4
-                        type: unicast  
+                        type: unicast
+                - name: Loopback0
+                  passive: true
+                  address_family:
+                    - name: ipv4
+                      type: unicast  
     - name: ic-node-3
       host: 100.71.72.3
       configuration:
@@ -61,17 +75,24 @@ iosxr:
               # router isis interfaces
               interfaces:
                 - name: GigabitEthernet0/0/0/0
+                  hello_padding: disable
                   passive: false
-                  point_to_point: false
+                  point_to_point: true
                   address_family:
                         - name: ipv4
                           type: unicast
                 - name: GigabitEthernet0/0/0/1
+                  hello_padding: disable
                   passive: false
-                  point_to_point: false
+                  point_to_point: true
                   address_family:
                         - name: ipv4
                           type: unicast
+                - name: Loopback0
+                  passive: true
+                  address_family:
+                    - name: ipv4
+                      type: unicast
     - name: ic-node-4
       host: 100.71.72.4
       configuration:
@@ -85,14 +106,21 @@ iosxr:
               # router isis interfaces
               interfaces:
                 - name: GigabitEthernet0/0/0/0
+                  hello_padding: disable
                   passive: false
-                  point_to_point: false
+                  point_to_point: true
                   address_family:
                         - name: ipv4
                           type: unicast
                 - name: GigabitEthernet0/0/0/1
+                  hello_padding: disable
                   passive: false
-                  point_to_point: false
+                  point_to_point: true
                   address_family:
                         - name: ipv4
                           type: unicast
+                - name: Loopback0
+                  passive: true
+                  address_family:
+                    - name: ipv4
+                      type: unicast

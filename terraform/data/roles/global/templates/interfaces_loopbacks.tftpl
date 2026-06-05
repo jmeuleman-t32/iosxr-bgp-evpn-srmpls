@@ -1,0 +1,8 @@
+interfaces:
+    loopbacks:
+    # Loopback0 - BGP EVPN Peering based on the underlay base and host ID
+      - id: 0
+        description: "Loopback0 - BGP EVPN Peering"
+        ipv4:
+          address: "${cidrhost(cidrsubnet(loopback0_base, 8, lo0_host_id), 0)}"
+          mask: 255.255.255.255

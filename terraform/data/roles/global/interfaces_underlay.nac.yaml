@@ -6,15 +6,13 @@ iosxr:
   
   global:
     variables:
-      underlay_base: "10.10.0.0/24"
+      underlay_base: "10.0.0.0/24"
 
   devices:
     - name: ic-node-1
       host: 100.71.72.1
       templates:
         - underlay_eth_addr
-      configuration:
-        hostname: ic-node-1
       variables:
         ge0_link_id: 0
         ge0_host_id: 1
@@ -25,8 +23,6 @@ iosxr:
       host: 100.71.72.2
       templates:
         - underlay_eth_addr
-      configuration:
-        hostname: ic-node-2
       variables:
         ge0_link_id: 2
         ge0_host_id: 1
@@ -37,8 +33,6 @@ iosxr:
       host: 100.71.72.3
       templates:
         - underlay_eth_addr
-      configuration:
-        hostname: ic-node-3
       variables:
         ge0_link_id: 0
         ge0_host_id: 2
@@ -49,8 +43,6 @@ iosxr:
       host: 100.71.72.4
       templates:
         - underlay_eth_addr
-      configuration:
-        hostname: ic-node-4
       variables:
         ge0_link_id: 1
         ge0_host_id: 2

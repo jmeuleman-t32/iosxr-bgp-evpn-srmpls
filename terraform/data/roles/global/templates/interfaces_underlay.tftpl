@@ -1,10 +1,12 @@
 interfaces:
     ethernets:
+    # underlay interfaces based on the underlay_base and host_id variables
       - type: GigabitEthernet
         id: 0/0/0/0
         description: Underlay
-        mtu: 9000
         shutdown: false
+        mtu: 9000
+        cdp: true
         ipv4:
           address: "${cidrhost(cidrsubnet(underlay_base, 6, ge0_link_id), ge0_host_id)}"
           mask: 255.255.255.252
@@ -12,8 +14,9 @@ interfaces:
       - type: GigabitEthernet
         id: 0/0/0/1
         description: Underlay
-        mtu: 9000
         shutdown: false
+        mtu: 9000
+        cdp: true
         ipv4:
           address: "${cidrhost(cidrsubnet(underlay_base, 6, ge1_link_id), ge1_host_id)}"
           mask: 255.255.255.252

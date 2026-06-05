@@ -1,0 +1,38 @@
+iosxr:
+  templates:
+    - name: loopback0_addr
+      type: file
+      file: data/roles/global/templates/interfaces_loopbacks.tftpl
+  
+  global:
+    variables:
+      loopback0_base: "100.64.60.0/24"
+
+  devices:
+    - name: ic-node-1
+      host: 100.71.72.1
+      templates:
+        - loopback0_addr
+      variables:
+        lo0_host_id: 1
+
+    - name: ic-node-2
+      host: 100.71.72.2
+      templates:
+        - loopback0_addr
+      variables:
+        lo0_host_id: 2
+
+    - name: ic-node-3
+      host: 100.71.72.3
+      templates:
+        - loopback0_addr
+      variables:
+        lo0_host_id: 3
+
+    - name: ic-node-4
+      host: 100.71.72.4
+      templates:
+        - loopback0_addr
+      variables:
+        lo0_host_id: 4
