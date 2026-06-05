@@ -10,6 +10,17 @@ iosxr:
               nets:
                 - id: "49.0000.0000.0000.0001.00"
               is_type: level-1-2
+              # segment routing mpls 
+              segment_routing:
+                global_block_from: 16000
+                global_block_to: 17000
+              address_family:
+                ipv4_unicast:
+                  metric_style: wide
+                  segment_routing:
+                    mpls:
+                      enable: true
+                      sr_prefer: true
               # router isis interfaces
               interfaces:
                 - name: GigabitEthernet0/0/0/0
@@ -41,6 +52,17 @@ iosxr:
               nets:
                 - id: "49.0000.0000.0000.0002.00"
               is_type: level-1-2
+              # segment routing mpls 
+              segment_routing:
+                global_block_from: 16000
+                global_block_to: 17000
+              address_family:
+                ipv4_unicast:
+                  metric_style: wide
+                  segment_routing:
+                    mpls:
+                      enable: true
+                      sr_prefer: true
               # router isis interfaces
               interfaces:
                 - name: GigabitEthernet0/0/0/0
@@ -72,6 +94,17 @@ iosxr:
               nets:
                 - id: "49.0000.0000.0000.0003.00"
               is_type: level-1-2
+              # segment routing mpls 
+              segment_routing:
+                global_block_from: 16000
+                global_block_to: 17000
+              address_family:
+                ipv4_unicast:
+                  metric_style: wide
+                  segment_routing:
+                    mpls:
+                      enable: true
+                      sr_prefer: true
               # router isis interfaces
               interfaces:
                 - name: GigabitEthernet0/0/0/0
@@ -103,6 +136,17 @@ iosxr:
               nets:
                 - id: "49.0000.0000.0000.0004.00"
               is_type: level-1-2
+              # segment routing mpls 
+              segment_routing:
+                global_block_from: 16000
+                global_block_to: 17000
+              address_family:
+                ipv4_unicast:
+                  metric_style: wide
+                  segment_routing:
+                    mpls:
+                      enable: true
+                      sr_prefer: true
               # router isis interfaces
               interfaces:
                 - name: GigabitEthernet0/0/0/0
