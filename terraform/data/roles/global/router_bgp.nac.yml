@@ -13,6 +13,7 @@ iosxr:
                 l2vpn_evpn:
                   enable: true
               bgp_router_id: "${cidrhost(cidrsubnet(loopback0_base, 8, lo0_host_id), 0)}"
+              # bgp evpn configuration for the leaf nodes, using neighbor groups to avoid repetition
               neighbor_groups:
                 - name: RR-CLIENTS
                   remote_as: 65000
@@ -39,6 +40,7 @@ iosxr:
                 l2vpn_evpn:
                   enable: true
               bgp_router_id: "${cidrhost(cidrsubnet(loopback0_base, 8, lo0_host_id), 0)}"
+              # bgp evpn configuration for the spine nodes, using neighbor groups to avoid repetition
               neighbor_groups:
                 - name: RR-SERVERS
                   remote_as: 65000

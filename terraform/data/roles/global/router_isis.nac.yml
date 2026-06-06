@@ -19,7 +19,6 @@ iosxr:
                   metric_style: wide
                   segment_routing:
                     mpls:
-                      enable: true
                       sr_prefer: true
               # router isis interfaces
               interfaces:
@@ -61,7 +60,6 @@ iosxr:
                   metric_style: wide
                   segment_routing:
                     mpls:
-                      enable: true
                       sr_prefer: true
               # router isis interfaces
               interfaces:
@@ -103,7 +101,6 @@ iosxr:
                   metric_style: wide
                   segment_routing:
                     mpls:
-                      enable: true
                       sr_prefer: true
               # router isis interfaces
               interfaces:
@@ -145,7 +142,6 @@ iosxr:
                   metric_style: wide
                   segment_routing:
                     mpls:
-                      enable: true
                       sr_prefer: true
               # router isis interfaces
               interfaces:
