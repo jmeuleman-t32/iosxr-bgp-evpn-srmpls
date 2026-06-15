@@ -9,6 +9,8 @@ routing:
             ipv4_unicast:
               enable: true
               additional_paths_receive: true
+              additional_paths_send: true
+              label_mode: per-vrf
           neighbors:
             - address: "${cidrhost(cidrsubnet(overlay_base, 8, tonumber(vrf.name)), 2)}"
               remote_as: ${remote_as}
