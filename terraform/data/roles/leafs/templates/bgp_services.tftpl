@@ -1,0 +1,15 @@
+routing:
+  bgp:
+    - as_number: 65000
+      vrfs:
+%{ for vrf in vrfs ~}
+        - name: "${vrf.name}"
+          rd: "${vrf.local_as}:${vrf.name}"
+          address_family:
+            ipv4_unicast:
+              enable: true
+              additional_paths_receive: true
+          neighbors:
+            - address: "${cidrhost(cidrsubnet(overlay_base, 8, tonumber(vrf.name)), 2)}"
+              remote_as: ${remote_as}
+%{ endfor ~}

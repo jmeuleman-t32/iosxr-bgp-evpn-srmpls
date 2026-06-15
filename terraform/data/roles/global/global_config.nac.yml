@@ -24,6 +24,9 @@ iosxr:
     - name: isis_routing
       type: file
       file: data/roles/global/templates/routing_isis.tftpl
+    - name: bfd
+      type: file
+      file: data/roles/global/templates/bfd.tftpl
   
   global:
   # global device specific settings 
@@ -39,6 +42,7 @@ iosxr:
       - hostname
       - cdp
       - nameserver
+      - bfd
 
   # per device group specific settings (spine and leaf)
   device_groups:

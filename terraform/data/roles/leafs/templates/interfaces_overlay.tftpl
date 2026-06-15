@@ -5,12 +5,12 @@ interfaces:
       description: Services Networks
       shutdown: false
       subinterfaces:
-%{ for svc in vrfs ~}
-        - id: 0/0/0/2.${svc.name}
-          description: "Services Networks for ${svc.description}"
-          encapsulation_dot1q_vlan: ${svc.name}
-          vrf: ${svc.name}
+%{ for vrf in vrfs ~}
+        - id: 0/0/0/2.${vrf.name}
+          description: "Services Networks for ${vrf.description}"
+          encapsulation_dot1q_vlan: ${vrf.name}
+          vrf: ${vrf.name}
           ipv4:
-            address: "${cidrhost(cidrsubnet(overlay_base, 8, svc.name), 1)}"
+            address: "${cidrhost(cidrsubnet(overlay_base, 8, vrf.name), 1)}"
             mask: 255.255.255.248
 %{ endfor ~}

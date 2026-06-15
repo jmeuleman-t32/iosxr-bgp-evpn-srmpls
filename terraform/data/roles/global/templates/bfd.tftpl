@@ -1,0 +1,17 @@
+bfd:
+  echo_disable: false
+  dampening_initial_wait: 3600
+  dampening_secondary_wait: 3600
+  dampening_threshold: 60000
+  dampening_extensions_down_monitoring: true
+  interfaces:
+    - name: GigabitEthernet0/0/0/0
+      echo_disable: false
+      tx_interval: 300000
+      rx_interval: 300000
+      multiplier: 40
+    - name: GigabitEthernet0/0/0/1
+      echo_disable: false
+      tx_interval: 300000
+      rx_interval: 300000
+      multiplier: 40

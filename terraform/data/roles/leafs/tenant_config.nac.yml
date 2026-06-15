@@ -29,6 +29,9 @@ iosxr:
         - name: 30
           description: Customer C VRF
           local_as: 65000
+        - name: 40
+          description: Customer D VRF
+          local_as: 65000
       templates:
         - vrf_services
         - overlay_eth_addr
@@ -39,10 +42,8 @@ iosxr:
     - name: ic-node-3
       host: 100.71.72.3
       variables:
-        vrfs:
-        - remote_as: 65001
+        remote_as: 65001
     - name: ic-node-4
       host: 100.71.72.4
       variables:
-        vrfs:
-        - remote_as: 65002
+        remote_as: 65002
