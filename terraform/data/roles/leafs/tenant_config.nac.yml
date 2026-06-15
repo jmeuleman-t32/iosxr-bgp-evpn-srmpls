@@ -1,0 +1,48 @@
+iosxr:
+  templates:
+    - name: vrf_services
+      type: file
+      file: data/roles/leafs/templates/vrf_services.tftpl
+    - name: overlay_eth_addr
+      type: file
+      file: data/roles/leafs/templates/interfaces_overlay.tftpl
+    - name: bgp_services
+      type: file
+      file: data/roles/leafs/templates/bgp_services.tftpl
+
+# global variables for tenant services  
+  global:
+    variables:
+      overlay_base: "172.16.0.0/16"
+
+# group based variables for tenant services
+  device_groups:
+    - name: ic-leafs
+      variables:
+        vrfs: 
+        - name: 10
+          description: Customer A VRF
+          local_as: 65000
+        - name: 20
+          description: Customer B VRF
+          local_as: 65000
+        - name: 30
+          description: Customer C VRF
+          local_as: 65000
+      templates:
+        - vrf_services
+        - overlay_eth_addr
+        - bgp_services
+
+# per device variables for tenant services  
+  devices:
+    - name: ic-node-3
+      host: 100.71.72.3
+      variables:
+        vrfs:
+        - remote_as: 65001
+    - name: ic-node-4
+      host: 100.71.72.4
+      variables:
+        vrfs:
+        - remote_as: 65002

@@ -1,0 +1,21 @@
+# bgp routing configuration for the spines
+routing:
+  bgp:
+    - as_number: 65000
+      address_family:
+        l2vpn_evpn:
+          enable: true
+      bgp_router_id: "${cidrhost(cidrsubnet(loopback0_base, 8, lo0_host_id), 0)}"
+      # bgp evpn configuration for the spine nodes, using neighbor groups to avoid repetition
+      neighbor_groups:
+        - name: RR-SERVERS
+          remote_as: 65000
+          shutdown: false
+          update_source: Loopback0
+          address_family:
+            - name: l2vpn-evpn
+      neighbors:
+        - address: "${cidrhost(cidrsubnet(loopback0_base, 8, 1), 0)}"
+          use_neighbor_group: RR-SERVERS
+        - address: "${cidrhost(cidrsubnet(loopback0_base, 8, 2), 0)}"
+          use_neighbor_group: RR-SERVERS

@@ -1,0 +1,22 @@
+# bgp routing configuration for the leafs
+routing:
+  bgp:
+    - as_number: 65000
+      address_family:
+        l2vpn_evpn:
+          enable: true
+      bgp_router_id: "${cidrhost(cidrsubnet(loopback0_base, 8, lo0_host_id), 0)}"
+      # bgp evpn configuration for the leaf nodes, using neighbor groups to avoid repetition
+      neighbor_groups:
+        - name: RR-CLIENTS
+          remote_as: 65000
+          shutdown: false
+          update_source: Loopback0
+          address_family:
+            - name: l2vpn-evpn
+              route_reflector_client: true
+      neighbors:
+        - address: "${cidrhost(cidrsubnet(loopback0_base, 8, 3), 0)}"
+          use_neighbor_group: RR-CLIENTS
+        - address: "${cidrhost(cidrsubnet(loopback0_base, 8, 4), 0)}"
+          use_neighbor_group: RR-CLIENTS

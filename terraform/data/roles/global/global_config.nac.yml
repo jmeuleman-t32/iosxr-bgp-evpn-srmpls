@@ -1,0 +1,114 @@
+iosxr:
+  templates:
+    - name: loopback0_addr
+      type: file
+      file: data/roles/global/templates/interfaces_loopbacks.tftpl
+    - name: underlay_eth_addr
+      type: file
+      file: data/roles/global/templates/interfaces_underlay.tftpl
+    - name: hostname
+      type: file
+      file: data/roles/global/templates/hostname.tftpl
+    - name: cdp
+      type: file
+      file: data/roles/global/templates/cdp.tftpl
+    - name: nameserver
+      type: file
+      file: data/roles/global/templates/nameserver.tftpl
+    - name: bgp_routing_spines
+      type: file
+      file: data/roles/global/templates/routing_bgp_spines.tftpl
+    - name: bgp_routing_leafs
+      type: file
+      file: data/roles/global/templates/routing_bgp_leafs.tftpl
+    - name: isis_routing
+      type: file
+      file: data/roles/global/templates/routing_isis.tftpl
+  
+  global:
+  # global device specific settings 
+    variables:
+    # Interface supernet selectors
+      loopback0_base: "100.64.60.0/24"
+      underlay_base: "10.0.0.0/24"
+    # Infrastructure parameters
+      domain_name: "cml.transit32.local"
+      dns_server_primary: "100.71.72.254"
+    templates:
+      - isis_routing
+      - hostname
+      - cdp
+      - nameserver
+
+  # per device group specific settings (spine and leaf)
+  device_groups:
+    - name: ic-spines
+      devices:
+        - ic-node-1
+        - ic-node-2
+      templates:
+        - bgp_routing_spines
+    - name: ic-leafs
+      devices:
+        - ic-node-3
+        - ic-node-4
+      templates:
+        - bgp_routing_leafs
+
+  # per device specific settings
+  devices:
+    - name: ic-node-1
+      host: 100.71.72.1
+      templates:
+        - loopback0_addr
+        - underlay_eth_addr
+      variables:
+        hostname: ic-node-1
+        isis_net: "49.0000.0000.0000.0001.00"
+        lo0_host_id: 1
+        ge0_link_id: 0
+        ge0_host_id: 1
+        ge1_link_id: 1
+        ge1_host_id: 1
+
+    - name: ic-node-2
+      host: 100.71.72.2
+      templates:
+        - loopback0_addr
+        - underlay_eth_addr
+      variables:
+        hostname: ic-node-2
+        isis_net: "49.0000.0000.0000.0002.00"
+        lo0_host_id: 2
+        ge0_link_id: 2
+        ge0_host_id: 1
+        ge1_link_id: 3
+        ge1_host_id: 1
+
+    - name: ic-node-3
+      host: 100.71.72.3
+      templates:
+        - loopback0_addr
+        - underlay_eth_addr
+      variables:
+        hostname: ic-node-3
+        isis_net: "49.0000.0000.0000.0003.00"
+        lo0_host_id: 3
+        ge0_link_id: 0
+        ge0_host_id: 2
+        ge1_link_id: 2
+        ge1_host_id: 2
+
+    - name: ic-node-4
+      host: 100.71.72.4
+      templates:
+        - loopback0_addr
+        - underlay_eth_addr
+      variables:
+        hostname: ic-node-4
+        isis_net: "49.0000.0000.0000.0004.00"
+        lo0_host_id: 4
+        ge0_link_id: 1
+        ge0_host_id: 2
+        ge1_link_id: 3
+        ge1_host_id: 2

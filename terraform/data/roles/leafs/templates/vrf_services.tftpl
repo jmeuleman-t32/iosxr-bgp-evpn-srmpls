@@ -1,13 +1,13 @@
 vrfs:
 %{ for vrf in vrfs ~}
-    - name: ${vrf.name}
-      description: "${vrf.description}"
-      rd: "${vrf.rd}"
-      address_family:
-        ipv4_unicast:
-          enable: true
-          import_route_targets:
-            - rt: "${vrf.rt}"
-          export_route_targets:
-            - rt: "${vrf.rt}"
+  - name: ${vrf.name}
+    description: "${vrf.description}"
+    rd: "${vrf.local_as}:${vrf.name}"
+    address_family:
+      ipv4_unicast:
+        enable: true
+        import_route_targets:
+          - rt: "${vrf.local_as}:${vrf.name}"
+        export_route_targets:
+          - rt: "${vrf.local_as}:${vrf.name}"
 %{ endfor ~}

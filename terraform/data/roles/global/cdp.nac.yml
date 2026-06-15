@@ -1,8 +1,0 @@
-iosxr:
-  global:
-    configuration:
-    # Enable CDP globally (per interface CDP configuration is part of the interfaces_underlay.tftpl)
-      cdp:
-        enable: true
-        timer: 60
-        holdtime: 180

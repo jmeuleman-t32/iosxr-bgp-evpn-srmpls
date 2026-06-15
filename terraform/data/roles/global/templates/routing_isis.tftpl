@@ -1,0 +1,38 @@
+routing:
+  isis_processes:
+    - id: ISIS-1
+      # router isis process
+      nets:
+        - id: "${isis_net}"
+      is_type: level-1-2
+      # segment routing mpls 
+      segment_routing:
+        global_block_from: 16000
+        global_block_to: 17000
+      address_family:
+        ipv4_unicast:
+          metric_style: wide
+          segment_routing:
+            mpls:
+              sr_prefer: true
+      # router isis interfaces
+      interfaces:
+        - name: GigabitEthernet0/0/0/0
+          hello_padding: disable
+          passive: false
+          point_to_point: true
+          address_family:
+            - name: ipv4
+              type: unicast
+        - name: GigabitEthernet0/0/0/1
+          hello_padding: disable
+          passive: false
+          point_to_point: true
+          address_family:
+            - name: ipv4
+              type: unicast
+        - name: Loopback0
+          passive: true
+          address_family:
+            - name: ipv4
+              type: unicast
