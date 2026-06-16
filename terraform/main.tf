@@ -3,7 +3,4 @@ module "iosxr" {
   version = "0.1.1"
 
   yaml_directories = ["data/"]
-
-  username = var.username
-  password = var.password
 }
