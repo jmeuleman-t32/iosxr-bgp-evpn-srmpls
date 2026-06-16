@@ -32,6 +32,22 @@ jobs:
       - name: Terraform init
         run: terraform init -upgrade
 
+      - name: Inspect module variables
+        run: |
+          echo "=== VARIABLES ==="
+          grep -A 3 -B 1 'variable "' .terraform/modules/iosxr/variables.tf || true
+
+          echo "=== PROVIDER ==="
+          sed -n '1,80p' .terraform/modules/iosxr/main.tf
+      
+      - name: Verify secrets reach Terraform
+        env:
+          TF_VAR_username: ${{ secrets.IOSXR_USERNAME }}
+          TF_VAR_password: ${{ secrets.IOSXR_PASSWORD }}
+        run: |
+          echo "Username length: ${#TF_VAR_username}"
+          echo "Password length: ${#TF_VAR_password}"
+
       - name: Terraform validate
         run: terraform validate
 
