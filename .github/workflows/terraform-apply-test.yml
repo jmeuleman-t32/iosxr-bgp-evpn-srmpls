@@ -3,12 +3,13 @@ name: Terraform Apply Test Environment
 on:
   workflow_dispatch:
   push:
-    branches: [main]
+    branches:
+      - main
 
 jobs:
   terraform:
     runs-on: [self-hosted, linux, x64]
-    environment: Test
+    environment: test
 
     defaults:
       run:
@@ -18,20 +19,30 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
+      - name: Debug Terraform folder
+        run: |
+          pwd
+          ls -la
+          echo "----- main.tf -----"
+          cat main.tf
+          echo "----- cleanup -----"
+          rm -rf .terraform
+          rm -f .terraform.lock.hcl
+
       - name: Terraform init
-        run: terraform init
+        run: terraform init -upgrade
 
       - name: Terraform validate
         run: terraform validate
 
       - name: Terraform plan
-        run: terraform plan -out=tfplan
         env:
-          TF_VAR_IOSXR_UN: ${{ secrets.IOSXR_USERNAME }}
-          TF_VAR_IOSXR_PW: ${{ secrets.IOSXR_PASSWORD }}
+          TF_VAR_iosxr_username: ${{ secrets.IOSXR_USERNAME }}
+          TF_VAR_iosxr_password: ${{ secrets.IOSXR_PASSWORD }}
+        run: terraform plan -out=tfplan
 
       - name: Terraform apply
-        run: terraform apply -auto-approve tfplan
         env:
-          TF_VAR_IOSXR_UN: ${{ secrets.IOSXR_USERNAME }}
-          TF_VAR_IOSXR_PW: ${{ secrets.IOSXR_PASSWORD }}
+          TF_VAR_iosxr_username: ${{ secrets.IOSXR_USERNAME }}
+          TF_VAR_iosxr_password: ${{ secrets.IOSXR_PASSWORD }}
+        run: terraform apply -auto-approve tfplan
