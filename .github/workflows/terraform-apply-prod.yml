@@ -1,0 +1,66 @@
+name: Terraform Apply Prod Environment
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+
+jobs:
+  terraform:
+    runs-on: [self-hosted, linux, x64]
+    environment: Prod
+
+    defaults:
+      run:
+        working-directory: ./terraform
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Debug Terraform folder
+        run: |
+          pwd
+          ls -la
+          echo "----- main.tf -----"
+          cat main.tf
+          echo "----- cleanup -----"
+          rm -rf .terraform
+          rm -f .terraform.lock.hcl
+
+      - name: Terraform init
+        run: terraform init -upgrade
+
+      - name: Terraform validate
+        run: terraform validate
+
+      - name: Debug GitHub variables
+        run: |
+          echo "IC_NODE_1_OOBM_IP='${{ vars.IC_NODE_1_OOB_IP }}'"
+          echo "IC_NODE_2_OOBM_IP='${{ vars.IC_NODE_2_OOB_IP }}'"
+          echo "IC_NODE_3_OOBM_IP='${{ vars.IC_NODE_3_OOB_IP }}'"
+          echo "IC_NODE_4_OOBM_IP='${{ vars.IC_NODE_4_OOB_IP }}'"
+
+      - name: Render NAC config
+        env:
+          IC_NODE_1_OOBM_IP: ${{ vars.IC_NODE_1_OOB_IP }}
+          IC_NODE_2_OOBM_IP: ${{ vars.IC_NODE_2_OOB_IP }}
+          IC_NODE_3_OOBM_IP: ${{ vars.IC_NODE_3_OOB_IP }}
+          IC_NODE_4_OOBM_IP: ${{ vars.IC_NODE_4_OOB_IP }}
+        run: |
+          envsubst < templates/global_config.nac.yml > data/roles/global/global_config.rendered.nac.yml
+          echo "----- rendered NAC config -----"
+          cat data/roles/global/global_config.rendered.nac.yml
+
+      - name: Terraform plan
+        env:
+          IOSXR_USERNAME: ${{ secrets.IOSXR_USERNAME }}
+          IOSXR_PASSWORD: ${{ secrets.IOSXR_PASSWORD }}
+        run: terraform plan -out=tfplan
+
+      - name: Terraform apply
+        env:
+          IOSXR_USERNAME: ${{ secrets.IOSXR_USERNAME }}
+          IOSXR_PASSWORD: ${{ secrets.IOSXR_PASSWORD }}
+        run: terraform apply -auto-approve tfplan
