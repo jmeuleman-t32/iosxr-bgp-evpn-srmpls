@@ -11,3 +11,4 @@ requirements.txt
 pyproject.toml
 uv.lock
 .yamllint
+global_config.rendered.nac.yml

@@ -106,6 +106,7 @@ iosxr:
         ge0_host_id: 2
         ge1_link_id: 2
         ge1_host_id: 2
+        remote_as: 65001
 
     - name: ic-node-4
       host: ${IC_NODE_4_OOBM_IP}
@@ -120,3 +121,4 @@ iosxr:
         ge0_host_id: 2
         ge1_link_id: 3
         ge1_host_id: 2
+        remote_as: 65002

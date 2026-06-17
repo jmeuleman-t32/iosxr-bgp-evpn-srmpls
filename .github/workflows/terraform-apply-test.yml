@@ -31,27 +31,29 @@ jobs:
 
       - name: Terraform init
         run: terraform init -upgrade
- 
+
       - name: Terraform validate
         run: terraform validate
+
+      - name: Render NAC config
+        env:
+          IC_NODE_1_OOBM_IP: ${{ vars.IC_NODE_1_OOBM_IP }}
+          IC_NODE_2_OOBM_IP: ${{ vars.IC_NODE_2_OOBM_IP }}
+          IC_NODE_3_OOBM_IP: ${{ vars.IC_NODE_3_OOBM_IP }}
+          IC_NODE_4_OOBM_IP: ${{ vars.IC_NODE_4_OOBM_IP }}
+        run: |
+          envsubst < ../templates/global_config.nac.yml > ../data/global/global_config.rendered.nac.yml
+          echo "----- rendered NAC config -----"
+          cat ../data/global/global_config.rendered.nac.yml
 
       - name: Terraform plan
         env:
           IOSXR_USERNAME: ${{ secrets.IOSXR_USERNAME }}
           IOSXR_PASSWORD: ${{ secrets.IOSXR_PASSWORD }}
-          IC_NODE_1_OOB_IP: ${{ vars.IC_NODE_1_OOB_IP }}
-          IC_NODE_2_OOB_IP: ${{ vars.IC_NODE_2_OOB_IP }}
-          IC_NODE_3_OOB_IP: ${{ vars.IC_NODE_3_OOB_IP }}
-          IC_NODE_4_OOB_IP: ${{ vars.IC_NODE_4_OOB_IP }}
-          
         run: terraform plan -out=tfplan
 
       - name: Terraform apply
         env:
           IOSXR_USERNAME: ${{ secrets.IOSXR_USERNAME }}
           IOSXR_PASSWORD: ${{ secrets.IOSXR_PASSWORD }}
-          IC_NODE_1_OOB_IP: ${{ vars.IC_NODE_1_OOB_IP }}
-          IC_NODE_2_OOB_IP: ${{ vars.IC_NODE_2_OOB_IP }}
-          IC_NODE_3_OOB_IP: ${{ vars.IC_NODE_3_OOB_IP }}
-          IC_NODE_4_OOB_IP: ${{ vars.IC_NODE_4_OOB_IP }}
         run: terraform apply -auto-approve tfplan
