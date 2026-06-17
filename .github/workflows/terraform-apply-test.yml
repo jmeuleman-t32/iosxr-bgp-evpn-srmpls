@@ -42,7 +42,7 @@ jobs:
           IC_NODE_3_OOBM_IP: ${{ vars.IC_NODE_3_OOBM_IP }}
           IC_NODE_4_OOBM_IP: ${{ vars.IC_NODE_4_OOBM_IP }}
         run: |
-          envsubst < ../templates/global_config.nac.yml > ../data/global/global_config.rendered.nac.yml
+          envsubst < templates/global_config.nac.yml > data/roles/global/global_config.rendered.nac.yml
           echo "----- rendered NAC config -----"
           cat ../data/global/global_config.rendered.nac.yml
 
