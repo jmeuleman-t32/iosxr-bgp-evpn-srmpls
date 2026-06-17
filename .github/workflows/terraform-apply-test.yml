@@ -35,6 +35,13 @@ jobs:
       - name: Terraform validate
         run: terraform validate
 
+      - name: Debug GitHub variables
+        run: |
+          echo "IC_NODE_1_OOBM_IP='${{ vars.IC_NODE_1_OOBM_IP }}'"
+          echo "IC_NODE_2_OOBM_IP='${{ vars.IC_NODE_2_OOBM_IP }}'"
+          echo "IC_NODE_3_OOBM_IP='${{ vars.IC_NODE_3_OOBM_IP }}'"
+          echo "IC_NODE_4_OOBM_IP='${{ vars.IC_NODE_4_OOBM_IP }}'"
+
       - name: Render NAC config
         env:
           IC_NODE_1_OOBM_IP: ${{ vars.IC_NODE_1_OOBM_IP }}
