@@ -37,17 +37,17 @@ jobs:
 
       - name: Debug GitHub variables
         run: |
-          echo "IC_NODE_1_OOBM_IP='${{ vars.IC_NODE_1_OOBM_IP }}'"
-          echo "IC_NODE_2_OOBM_IP='${{ vars.IC_NODE_2_OOBM_IP }}'"
-          echo "IC_NODE_3_OOBM_IP='${{ vars.IC_NODE_3_OOBM_IP }}'"
-          echo "IC_NODE_4_OOBM_IP='${{ vars.IC_NODE_4_OOBM_IP }}'"
+          echo "IC_NODE_1_OOBM_IP='${{ vars.IC_NODE_1_OOB_IP }}'"
+          echo "IC_NODE_2_OOBM_IP='${{ vars.IC_NODE_2_OOB_IP }}'"
+          echo "IC_NODE_3_OOBM_IP='${{ vars.IC_NODE_3_OOB_IP }}'"
+          echo "IC_NODE_4_OOBM_IP='${{ vars.IC_NODE_4_OOB_IP }}'"
 
       - name: Render NAC config
         env:
-          IC_NODE_1_OOBM_IP: ${{ vars.IC_NODE_1_OOBM_IP }}
-          IC_NODE_2_OOBM_IP: ${{ vars.IC_NODE_2_OOBM_IP }}
-          IC_NODE_3_OOBM_IP: ${{ vars.IC_NODE_3_OOBM_IP }}
-          IC_NODE_4_OOBM_IP: ${{ vars.IC_NODE_4_OOBM_IP }}
+          IC_NODE_1_OOBM_IP: ${{ vars.IC_NODE_1_OOB_IP }}
+          IC_NODE_2_OOBM_IP: ${{ vars.IC_NODE_2_OOB_IP }}
+          IC_NODE_3_OOBM_IP: ${{ vars.IC_NODE_3_OOB_IP }}
+          IC_NODE_4_OOBM_IP: ${{ vars.IC_NODE_4_OOB_IP }}
         run: |
           envsubst < templates/global_config.nac.yml > data/roles/global/global_config.rendered.nac.yml
           echo "----- rendered NAC config -----"
