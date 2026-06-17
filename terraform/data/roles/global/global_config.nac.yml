@@ -27,6 +27,9 @@ iosxr:
     - name: bfd
       type: file
       file: data/roles/global/templates/bfd.tftpl
+    - name: banner
+      type: file
+      file: data/roles/global/templates/banner.tftpl
   
   global:
   # global device specific settings 
@@ -43,6 +46,7 @@ iosxr:
       - cdp
       - nameserver
       - bfd
+      - banner
 
   # per device group specific settings (spine and leaf)
   device_groups:
