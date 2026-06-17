@@ -39,10 +39,19 @@ jobs:
         env:
           IOSXR_USERNAME: ${{ secrets.IOSXR_USERNAME }}
           IOSXR_PASSWORD: ${{ secrets.IOSXR_PASSWORD }}
+          IC_NODE_1_OOB_IP: ${{ vars.IC_NODE_1_OOB_IP }}
+          IC_NODE_2_OOB_IP: ${{ vars.IC_NODE_2_OOB_IP }}
+          IC_NODE_3_OOB_IP: ${{ vars.IC_NODE_3_OOB_IP }}
+          IC_NODE_4_OOB_IP: ${{ vars.IC_NODE_4_OOB_IP }}
+          
         run: terraform plan -out=tfplan
 
       - name: Terraform apply
         env:
           IOSXR_USERNAME: ${{ secrets.IOSXR_USERNAME }}
           IOSXR_PASSWORD: ${{ secrets.IOSXR_PASSWORD }}
+          IC_NODE_1_OOB_IP: ${{ vars.IC_NODE_1_OOB_IP }}
+          IC_NODE_2_OOB_IP: ${{ vars.IC_NODE_2_OOB_IP }}
+          IC_NODE_3_OOB_IP: ${{ vars.IC_NODE_3_OOB_IP }}
+          IC_NODE_4_OOB_IP: ${{ vars.IC_NODE_4_OOB_IP }}
         run: terraform apply -auto-approve tfplan
