@@ -40,10 +40,10 @@ iosxr:
 # per device variables for tenant services  
   devices:
     - name: ic-node-3
-      host: 100.71.72.3
+      host: ${IC_NODE_3_OOBM_IP}
       variables:
         remote_as: 65001
     - name: ic-node-4
-      host: 100.71.72.4
+      host: ${IC_NODE_4_OOBM_IP}
       variables:
         remote_as: 65002

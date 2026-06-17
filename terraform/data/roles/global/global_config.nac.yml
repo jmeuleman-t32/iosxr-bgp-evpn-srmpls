@@ -66,7 +66,7 @@ iosxr:
   # per device specific settings
   devices:
     - name: ic-node-1
-      host: 100.71.72.1
+      host: ${IC_NODE_1_OOBM_IP}
       templates:
         - loopback0_addr
         - underlay_eth_addr
@@ -80,7 +80,7 @@ iosxr:
         ge1_host_id: 1
 
     - name: ic-node-2
-      host: 100.71.72.2
+      host: ${IC_NODE_2_OOBM_IP}
       templates:
         - loopback0_addr
         - underlay_eth_addr
@@ -94,7 +94,7 @@ iosxr:
         ge1_host_id: 1
 
     - name: ic-node-3
-      host: 100.71.72.3
+      host: ${IC_NODE_3_OOBM_IP}
       templates:
         - loopback0_addr
         - underlay_eth_addr
@@ -108,7 +108,7 @@ iosxr:
         ge1_host_id: 2
 
     - name: ic-node-4
-      host: 100.71.72.4
+      host: ${IC_NODE_4_OOBM_IP}
       templates:
         - loopback0_addr
         - underlay_eth_addr
