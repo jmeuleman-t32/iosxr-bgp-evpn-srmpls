@@ -1,1 +1,0 @@
-{"Modules":[{"Key":"","Source":"","Dir":"."},{"Key":"iosxr","Source":"registry.terraform.io/netascode/nac-iosxr/iosxr","Version":"0.1.1","Dir":".terraform/modules/iosxr"},{"Key":"iosxr.model","Source":"./modules/model","Dir":".terraform/modules/iosxr/modules/model"}]}
