@@ -3,19 +3,19 @@ iosxr:
   templates:
     - name: bgp_routing_spines
       type: file
-      file: ../config/roles/global/templates/routing_bgp_spines.tftpl
+      file: config/roles/global/templates/routing_bgp_spines.tftpl
     - name: bgp_routing_leafs
       type: file
-      file: ../config/roles/global/templates/routing_bgp_leafs.tftpl
+      file: config/roles/global/templates/routing_bgp_leafs.tftpl
     - name: bgp_services
       type: file
-      file: ../config/roles/leafs/templates/bgp_services.tftpl
+      file: config/roles/leafs/templates/bgp_services.tftpl
     - name: vrf_services
       type: file
-      file: ../config/roles/leafs/templates/vrf_services.tftpl
+      file: config/roles/leafs/templates/vrf_services.tftpl
     - name: overlay_eth_addr
       type: file
-      file: ../config/roles/leafs/templates/interfaces_overlay.tftpl
+      file: config/roles/leafs/templates/interfaces_overlay.tftpl
 
 # group config device specific vars and template assignment
   device_groups:

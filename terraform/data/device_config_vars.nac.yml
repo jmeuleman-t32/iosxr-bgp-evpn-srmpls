@@ -3,10 +3,10 @@ iosxr:
   templates:
     - name: loopback0_addr
       type: file
-      file: ../config/roles/global/templates/interfaces_loopbacks.tftpl
+      file: config/roles/global/templates/interfaces_loopbacks.tftpl
     - name: underlay_eth_addr
       type: file
-      file: ../config/roles/global/templates/interfaces_underlay.tftpl
+      file: config/roles/global/templates/interfaces_underlay.tftpl
 
 # per device specific vars and template assignment 
   devices:

@@ -3,22 +3,22 @@ iosxr:
   templates:
     - name: isis_routing
       type: file
-      file: ../config/roles/global/templates/routing_isis.tftpl
+      file: config/roles/global/templates/routing_isis.tftpl
     - name: hostname
       type: file
-      file: ../config/roles/global/templates/hostname.tftpl
+      file: config/roles/global/templates/hostname.tftpl
     - name: cdp
       type: file
-      file: ../config/roles/global/templates/cdp.tftpl
+      file: config/roles/global/templates/cdp.tftpl
     - name: nameserver
       type: file
-      file: ../config/roles/global/templates/nameserver.tftpl
+      file: config/roles/global/templates/nameserver.tftpl
     - name: bfd
       type: file
-      file: ../config/roles/global/templates/bfd.tftpl
+      file: config/roles/global/templates/bfd.tftpl
     - name: banner
       type: file
-      file: ../config/roles/global/templates/banner.tftpl
+      file: config/roles/global/templates/banner.tftpl
 
 # global config specific vars and template assignment 
   global:
