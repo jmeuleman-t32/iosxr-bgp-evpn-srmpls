@@ -27,7 +27,8 @@ jobs:
           cat main.tf
 
       - name: Terraform init
-        run: terraform init -upgrade
+        run: terraform init -upgrade \
+              -backend-config="path=/opt/terraform-statefile/iosxr-mpls-test/terraform.tfstate"
 
       - name: Terraform validate
         run: terraform validate
