@@ -25,9 +25,6 @@ jobs:
           ls -la
           echo "----- main.tf -----"
           cat main.tf
-          echo "----- cleanup -----"
-          rm -rf .terraform
-          rm -f .terraform.lock.hcl
 
       - name: Terraform init
         run: terraform init -upgrade
