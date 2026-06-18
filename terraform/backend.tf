@@ -1,5 +1,5 @@
 terraform {
   backend "local" {
-    path = "/opt/terraform-state/my-project/terraform.tfstate"
+    path = "/opt/terraform-statefile/iosxr-mpls/terraform.tfstate"
   }
 }
