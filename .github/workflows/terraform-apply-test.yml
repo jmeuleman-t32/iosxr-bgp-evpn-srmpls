@@ -49,9 +49,13 @@ jobs:
           IC_NODE_3_OOBM_IP: ${{ vars.IC_NODE_3_OOB_IP }}
           IC_NODE_4_OOBM_IP: ${{ vars.IC_NODE_4_OOB_IP }}
         run: |
-          envsubst < templates/global_config.nac.yml > data/roles/global/global_config.rendered.nac.yml
+          envsubst < data/global_config_vars.nac.yml > config/global_config_vars.rendered.nac.yml
+          envsubst < data/group_config_vars.nac.yml > config/group_config_vars.rendered.nac.yml
+          envsubst < data/device_config_vars.nac.yml > config/device_config_vars.rendered.nac.yml
           echo "----- rendered NAC config -----"
-          cat data/roles/global/global_config.rendered.nac.yml
+          cat config/global_config_vars.rendered.nac.yml
+          cat config/group_config_vars.rendered.nac.yml
+          cat config/device_config_vars.rendered.nac.yml
 
       - name: Terraform plan
         env:

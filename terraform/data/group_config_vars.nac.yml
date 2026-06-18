@@ -1,0 +1,51 @@
+iosxr:
+# templates related to the group config
+  templates:
+    - name: bgp_routing_spines
+      type: file
+      file: ../config/roles/global/templates/routing_bgp_spines.tftpl
+    - name: bgp_routing_leafs
+      type: file
+      file: ../config/roles/global/templates/routing_bgp_leafs.tftpl
+    - name: bgp_services
+      type: file
+      file: ../config/roles/leafs/templates/bgp_services.tftpl
+    - name: vrf_services
+      type: file
+      file: ../config/roles/leafs/templates/vrf_services.tftpl
+    - name: overlay_eth_addr
+      type: file
+      file: ../config/roles/leafs/templates/interfaces_overlay.tftpl
+
+# group config device specific vars and template assignment
+  device_groups:
+    - name: ic-spines
+      devices:
+        - ic-node-1
+        - ic-node-2
+      templates:
+        - bgp_routing_spines
+
+    - name: ic-leafs
+      devices:
+        - ic-node-3
+        - ic-node-4
+      variables:
+        vrfs: 
+        - name: 10
+          description: Customer A VRF
+          local_as: 65000
+        - name: 20
+          description: Customer B VRF
+          local_as: 65000
+        - name: 30
+          description: Customer C VRF
+          local_as: 65000
+        - name: 40
+          description: Customer D VRF
+          local_as: 65000
+      templates:
+        - bgp_routing_leafs
+        - bgp_services
+        - vrf_services
+        - overlay_eth_addr

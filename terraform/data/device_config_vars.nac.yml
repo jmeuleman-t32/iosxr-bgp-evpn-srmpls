@@ -1,0 +1,69 @@
+iosxr:
+# templates related to the per device specific settings
+  templates:
+    - name: loopback0_addr
+      type: file
+      file: ../config/roles/global/templates/interfaces_loopbacks.tftpl
+    - name: underlay_eth_addr
+      type: file
+      file: ../config/roles/global/templates/interfaces_underlay.tftpl
+
+# per device specific vars and template assignment 
+  devices:
+    - name: ic-node-1
+      host: ${IC_NODE_1_OOBM_IP}
+      templates:
+        - loopback0_addr
+        - underlay_eth_addr
+      variables:
+        hostname: ic-node-1
+        isis_net: "49.0000.0000.0000.0001.00"
+        lo0_host_id: 1
+        ge0_link_id: 0
+        ge0_host_id: 1
+        ge1_link_id: 1
+        ge1_host_id: 1
+
+    - name: ic-node-2
+      host: ${IC_NODE_2_OOBM_IP}
+      templates:
+        - loopback0_addr
+        - underlay_eth_addr
+      variables:
+        hostname: ic-node-2
+        isis_net: "49.0000.0000.0000.0002.00"
+        lo0_host_id: 2
+        ge0_link_id: 2
+        ge0_host_id: 1
+        ge1_link_id: 3
+        ge1_host_id: 1
+
+    - name: ic-node-3
+      host: ${IC_NODE_3_OOBM_IP}
+      templates:
+        - loopback0_addr
+        - underlay_eth_addr
+      variables:
+        hostname: ic-node-3
+        isis_net: "49.0000.0000.0000.0003.00"
+        lo0_host_id: 3
+        ge0_link_id: 0
+        ge0_host_id: 2
+        ge1_link_id: 2
+        ge1_host_id: 2
+        remote_as: 65001
+
+    - name: ic-node-4
+      host: ${IC_NODE_4_OOBM_IP}
+      templates:
+        - loopback0_addr
+        - underlay_eth_addr
+      variables:
+        hostname: ic-node-4
+        isis_net: "49.0000.0000.0000.0004.00"
+        lo0_host_id: 4
+        ge0_link_id: 1
+        ge0_host_id: 2
+        ge1_link_id: 3
+        ge1_host_id: 2
+        remote_as: 65002

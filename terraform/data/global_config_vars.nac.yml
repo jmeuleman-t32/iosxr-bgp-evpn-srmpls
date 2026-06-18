@@ -1,0 +1,39 @@
+iosxr:
+# templates related to the global config
+  templates:
+    - name: isis_routing
+      type: file
+      file: ../config/roles/global/templates/routing_isis.tftpl
+    - name: hostname
+      type: file
+      file: ../config/roles/global/templates/hostname.tftpl
+    - name: cdp
+      type: file
+      file: ../config/roles/global/templates/cdp.tftpl
+    - name: nameserver
+      type: file
+      file: ../config/roles/global/templates/nameserver.tftpl
+    - name: bfd
+      type: file
+      file: ../config/roles/global/templates/bfd.tftpl
+    - name: banner
+      type: file
+      file: ../config/roles/global/templates/banner.tftpl
+
+# global config specific vars and template assignment 
+  global:
+    variables:
+    # Interface supernet selectors
+      loopback0_base: "100.64.60.0/24"
+      underlay_base: "10.0.0.0/24"
+      overlay_base: "172.16.0.0/16"
+    # Infrastructure parameters
+      domain_name: "cml.transit32.local"
+      dns_server_primary: "100.71.72.254"
+    templates:
+      - isis_routing
+      - hostname
+      - cdp
+      - nameserver
+      - bfd
+      - banner

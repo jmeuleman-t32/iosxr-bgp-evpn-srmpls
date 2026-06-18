@@ -1,0 +1,15 @@
+*.log
+.terraform
+.terraform.lock.hcl
+terraform.tfstate
+terraform.tfstate.backup
+.envrc
+tflint.hcl
+.venv
+venv
+requirements.txt
+pyproject.toml
+uv.lock
+.yamllint
+data/roles/global/global_config.rendered.nac.yml
+.vscode
