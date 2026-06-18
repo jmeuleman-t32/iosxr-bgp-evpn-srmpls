@@ -42,6 +42,10 @@ jobs:
           echo "IC_NODE_2_OOBM_IP='${{ vars.IC_NODE_2_OOB_IP }}'"
           echo "IC_NODE_3_OOBM_IP='${{ vars.IC_NODE_3_OOB_IP }}'"
           echo "IC_NODE_4_OOBM_IP='${{ vars.IC_NODE_4_OOB_IP }}'"
+          echo "IC_NODE_1_HOSTNAME='${{ vars.IC_NODE_1_HOSTNAME }}'
+          echo "IC_NODE_2_HOSTNAME='${{ vars.IC_NODE_2_HOSTNAME }}'
+          echo "IC_NODE_3_HOSTNAME='${{ vars.IC_NODE_3_HOSTNAME }}'
+          echo "IC_NODE_4_HOSTNAME='${{ vars.IC_NODE_4_HOSTNAME }}'
 
       - name: Rendering Net-as-Code config
         env:
@@ -49,6 +53,10 @@ jobs:
           IC_NODE_2_OOBM_IP: ${{ vars.IC_NODE_2_OOB_IP }}
           IC_NODE_3_OOBM_IP: ${{ vars.IC_NODE_3_OOB_IP }}
           IC_NODE_4_OOBM_IP: ${{ vars.IC_NODE_4_OOB_IP }}
+          IC_NODE_1_HOSTNAME: ${{ vars.IC_NODE_1_HOSTNAME }}
+          IC_NODE_2_HOSTNAME: ${{ vars.IC_NODE_2_HOSTNAME }}
+          IC_NODE_3_HOSTNAME: ${{ vars.IC_NODE_3_HOSTNAME }}
+          IC_NODE_4_HOSTNAME: ${{ vars.IC_NODE_4_HOSTNAME }}
         run: |
           envsubst < data/global_config_vars.nac.yml > config/global_config_vars.rendered.nac.yml
           envsubst < data/group_config_vars.nac.yml > config/group_config_vars.rendered.nac.yml
