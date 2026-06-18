@@ -1,8 +1,0 @@
----
-# main playbook
-- hosts: ic_core
-  gather_facts: false
-  roles:
-    - role: netconf_yang
-- hosts: ic_core
-  gather_facts: false

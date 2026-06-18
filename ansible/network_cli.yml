@@ -1,8 +1,0 @@
----
-# main playbook
-- hosts: ic_edge
-  gather_facts: false
-  roles:
-    - role: network_cli
-- hosts: ic_edge
-  gather_facts: false
