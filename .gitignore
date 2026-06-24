@@ -13,3 +13,4 @@ uv.lock
 .yamllint
 data/roles/global/global_config.rendered.nac.yml
 .vscode
+tests
