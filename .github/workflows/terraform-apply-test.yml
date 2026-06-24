@@ -26,12 +26,11 @@ jobs:
           echo "----- main.tf -----"
           cat main.tf
 
-      - name: Install nac-validate in venv
+      - name: Install nac-validate
         run: |
           python3 -m venv .venv
-          . .venv/bin/activate
-          python -m pip install --upgrade pip
-          python -m pip install nac-validate
+          .venv/bin/pip install --upgrade pip
+          .venv/bin/pip install nac-validate
 
       - name: Terraform init
         run: |
@@ -73,7 +72,7 @@ jobs:
 
       - name: Validate Net-as-Code config
         run: |
-          nac-validate data/
+          .venv/bin/nac-validate data/
 
       - name: Terraform plan
         env:
