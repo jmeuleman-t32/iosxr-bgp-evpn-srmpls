@@ -73,7 +73,7 @@ jobs:
 
       - name: Validate Net-as-Code config
         run: |
-          nac-validate .
+          nac-validate data/
 
       - name: Terraform plan
         env:
