@@ -28,6 +28,11 @@ jobs:
           echo "----- main.tf -----"
           cat main.tf
 
+      - name: Install nac-validate
+        run: |
+          python3 -m pip install --upgrade pip
+          python3 -m pip install nac-validate
+
       - name: Terraform init
         run: |
           terraform init -upgrade -reconfigure \
@@ -42,10 +47,10 @@ jobs:
           echo "IC_NODE_2_OOBM_IP='${{ vars.IC_NODE_2_OOB_IP }}'"
           echo "IC_NODE_3_OOBM_IP='${{ vars.IC_NODE_3_OOB_IP }}'"
           echo "IC_NODE_4_OOBM_IP='${{ vars.IC_NODE_4_OOB_IP }}'"
-          echo "IC_NODE_1_HOSTNAME='${{ vars.IC_NODE_1_HOSTNAME }}'
-          echo "IC_NODE_2_HOSTNAME='${{ vars.IC_NODE_2_HOSTNAME }}'
-          echo "IC_NODE_3_HOSTNAME='${{ vars.IC_NODE_3_HOSTNAME }}'
-          echo "IC_NODE_4_HOSTNAME='${{ vars.IC_NODE_4_HOSTNAME }}'
+          echo "IC_NODE_1_HOSTNAME='${{ vars.IC_NODE_1_HOSTNAME }}'"
+          echo "IC_NODE_2_HOSTNAME='${{ vars.IC_NODE_2_HOSTNAME }}'"
+          echo "IC_NODE_3_HOSTNAME='${{ vars.IC_NODE_3_HOSTNAME }}'"
+          echo "IC_NODE_4_HOSTNAME='${{ vars.IC_NODE_4_HOSTNAME }}'"
 
       - name: Rendering Net-as-Code config
         env:
@@ -65,6 +70,10 @@ jobs:
           cat config/global_config_vars.rendered.nac.yml
           cat config/group_config_vars.rendered.nac.yml
           cat config/device_config_vars.rendered.nac.yml
+
+      - name: Validate Net-as-Code config
+        run: |
+          nac-validate .
 
       - name: Terraform plan
         env:
